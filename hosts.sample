@@ -1,0 +1,9 @@
+[sensu-client]
+localhost ansible_ssh_host=127.0.0.1
+
+[sensu-client:vars]
+sensu_rabbitmq_host=127.0.0.1
+sensu_rabbitmq_port=5671
+sensu_rabbitmq_vhost=/sensu
+sensu_rabbitmq_user=sensu
+sensu_rabbitmq_password=mypass
