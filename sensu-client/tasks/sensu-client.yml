@@ -1,0 +1,40 @@
+- name: Install the repository public key
+  apt_key: url=https://repos.sensuapp.org/apt/pubkey.gpg state=present
+- name: Add the repository
+  copy:
+    src=files/sensu.list
+    dest=/etc/apt/sources.list.d/
+- name: apt-get update
+  apt:
+    update_cache=yes
+- name: Install Sensu
+  apt:
+    name=sensu
+    state=present
+- name: Create SSL directory
+  file:
+    path=/etc/sensu/ssl
+    owner=sensu
+    group=sensu
+    mode=0755
+    state=directory
+- name: Copy SSL certificates
+  copy:
+    src=files/{{item}}.pem
+    dest=/etc/sensu/ssl/{{item}}.pem
+    owner=sensu
+    group=sensu
+    mode=0644
+  with_items:
+    - cert
+    - key
+- name: Configure Sensu connections
+  template:
+    src=templates/{{item}}.json.j2
+    dest=/etc/sensu/conf.d/{{item}}.json
+    owner=sensu
+    group=sensu
+    mode=0644
+  with_items:
+    - rabbitmq
+    - client

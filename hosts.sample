@@ -7,3 +7,4 @@ sensu_rabbitmq_port=5671
 sensu_rabbitmq_vhost=/sensu
 sensu_rabbitmq_user=sensu
 sensu_rabbitmq_password=mypass
+ruby_version=2.1.2
