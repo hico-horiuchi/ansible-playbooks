@@ -2,6 +2,6 @@
   "client": {
     "name": "{{inventory_hostname}}",
     "address": "{{ansible_ssh_host}}",
-    "subscriptions": [ "all", "system" ]
+    "subscriptions": [ "all", "system"{{sensu_subscriptions}} ]
   }
 }
