@@ -1,7 +1,13 @@
+- shell: /usr/bin/env ruby --version | grep {{ruby_version}}
+  register: ruby_version_check
+  ignore_errors: yes
 - command: apt-get -y install libssl-dev zlib1g-dev libreadline6-dev make
+  when: ruby_version_check|failed
 - shell:
     wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-{{ruby_version}}.tar.gz && tar xf ruby-{{ruby_version}}.tar.gz
     chdir=/tmp
+  when: ruby_version_check|failed
 - shell:
     ./configure && make && make install
     chdir=/tmp/ruby-{{ruby_version}}
+  when: ruby_version_check|failed
