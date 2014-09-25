@@ -1,10 +1,17 @@
-- command: gem install sensu-plugin mixlib-cli
 - apt:
     name=git
     state=present
+- command: test -d /etc/sensu/plugins/sensu-community-plugin/
+  register: repository_check
+  ignore_errors: yes
 - git:
     repo=git://github.com/sensu/sensu-community-plugins.git
     dest=/etc/sensu/plugins/sensu-community-plugins
     accept_hostkey=yes
     force=yes
+  when: repository_check|failed
+- command:
+    git pull
+    chdir=/etc/sensu/plugins/sensu-community-plugins
+  when: repository_check|success
 - shell: find /etc/sensu/plugins/sensu-community-plugins/plugins -type f | xargs chmod 755

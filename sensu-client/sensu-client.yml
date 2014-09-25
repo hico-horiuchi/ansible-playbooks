@@ -1,10 +1,10 @@
 - hosts: sensu-client
   sudo: yes
   tasks:
-    - include: tasks/sensu-client.yml
     - include: tasks/ruby.yml
+    - include: tasks/sensu-plugin.yml
     - include: tasks/sensu-community-plugins.yml
-    - name: Start Sensu services
+    - name: Restart Sensu services
       service:
         name=sensu-client
         enabled=yes
