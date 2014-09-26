@@ -1,7 +1,16 @@
 - hosts: sensu-client
   sudo: yes
   tasks:
+    - command: test -f /etc/apt/sources.list.d/sensu.list
+      register: install_check
+      ignore_errors: yes
+    - shell: /usr/bin/env ruby --version | grep {{ruby_version}}
+      register: ruby_version_check
+      ignore_errors: yes
     - include: tasks/ruby.yml
+      when: ruby_version_check|failed
+    - include: tasks/sensu-client.yml
+      when: install_check|failed
     - include: tasks/sensu-plugin.yml
     - include: tasks/sensu-community-plugins.yml
     - name: Restart Sensu services
