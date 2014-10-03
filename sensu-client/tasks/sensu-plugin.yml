@@ -1,7 +1,0 @@
-- shell: gem list | grep sensu-plugin
-  register: plugin_check
-  ignore_errors: yes
-- command: gem install sensu-plugin mixlib-cli --no-ri --no-rdoc
-  when: plugin_check|failed
-- shell: gem update --force --no-ri --no-rdoc && gem cleanup
-  when: plugin_check|success

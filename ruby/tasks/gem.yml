@@ -1,0 +1,2 @@
+- command: gem update --force --no-ri --no-rdoc
+- command: gem cleanup
