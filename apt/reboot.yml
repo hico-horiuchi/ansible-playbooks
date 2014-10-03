@@ -1,0 +1,5 @@
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: reboot
+      shell: sleep 2s && reboot &
