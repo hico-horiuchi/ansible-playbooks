@@ -38,3 +38,5 @@
   with_items:
     - rabbitmq
     - client
+- name: Use embedded Ruby
+  shell: echo 'EMBEDDED_RUBY=true' > /etc/default/sensu
