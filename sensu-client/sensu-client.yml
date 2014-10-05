@@ -4,7 +4,11 @@
     - command: test -f /etc/apt/sources.list.d/sensu.list
       register: install_check
       ignore_errors: yes
-    - include: tasks/client.yml
+    - include: tasks/sensu-client.yml
       when: install_check|failed
-    - include: tasks/community-plugins.yml
-    - include: tasks/restart.yml
+    - include: tasks/sensu-community-plugins.yml
+    - name: Restart Sensu services
+      service:
+        name=sensu-client
+        enabled=yes
+        state=restarted
