@@ -1,0 +1,6 @@
+---
+- name: git clone/pull ansible-playbooks
+  git:
+    repo={{repo}}
+    dest={{dest}}
+    accept_hostkey=yes

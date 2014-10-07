@@ -1,0 +1,14 @@
+---
+- name: scp templates/Vagrantfile vagrant/instance-*
+  template:
+    src=templates/Vagrantfile.j2
+    dest={{ansible_env.HOME}}/vagrant/instance-{{item}}/Vagrantfile
+    mode=664
+  with_sequence: count={{instance_num}}
+- name: vagrant box list
+  shell: vagrant box list | grep {{box_name}}
+  ignore_errors: yes
+  register: vagrant_box_list
+- name: vagrant box add
+  command: vagrant box add {{box_name}} {{box_url}}
+  when: vagrant_box_list|failed

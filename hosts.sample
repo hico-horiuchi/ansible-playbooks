@@ -8,3 +8,8 @@ sensu_rabbitmq_vhost=/sensu
 sensu_rabbitmq_user=sensu
 sensu_rabbitmq_password=mypass
 ruby_version=2.1.2
+
+[vagrant:vars]
+box_url=https://vagrant-kvm-boxes-si.s3.amazonaws.com/trusty64-kvm-20140418.box
+box_name=trusty64
+playbook_path=apache-bench/apache-bench.yml

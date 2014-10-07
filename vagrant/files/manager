@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'parallel'
+
+options = {}
+
+OptionParser.new do |opt|
+  opt.on('-c VALUE', 'vagrant command')  { |v| options[:c] = v }
+  opt.on('-n VALUE', 'instances number') { |v| options[:n] = v.to_i }
+  opt.parse! ARGV
+end
+options[:c] += ' -f' if options[:c] == 'destroy'
+
+Parallel.each 1..options[:n], in_threads: options[:n] do |i|
+  sleep i
+  puts "\e[35m==> #{options[:c]} instance-#{i}...\e[0m"
+  result = system "cd instance-#{i} && vagrant #{options[:c]} > /dev/null"
+  puts "\e[32m==> Success #{options[:c]} instance-#{i}\e[0m" if result
+  puts "\e[31m==> Failure #{options[:c]} instance-#{i}\e[0m" unless result  
+end

@@ -1,0 +1,8 @@
+---
+- name: vagrant plugin list
+  shell: vagrant plugin list | grep vagrant-kvm
+  ignore_errors: yes
+  register: vagrant_plugin_list
+- name: vagrant plugin install
+  command: vagrant plugin install vagrant-kvm
+  when: vagrant_plugin_list|failed

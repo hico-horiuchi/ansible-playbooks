@@ -1,0 +1,9 @@
+Vagrant.configure '2' do |config|
+  config.vm.hostname = 'instance-{{item}}'
+  config.vm.box = '{{box_name}}'
+  config.vm.network :public_network
+
+  config.vm.provision 'ansible' do |ansible|
+    ansible.playbook = '{{ansible_env.HOME}}/ansible-playbooks/{{playbook_path}}'
+  end
+end
