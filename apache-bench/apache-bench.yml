@@ -1,5 +1,6 @@
 - hosts: all
   sudo: yes
   tasks:
+    - include: tasks/user.yml
     - include: tasks/apt.yml
     - include: tasks/ab.yml

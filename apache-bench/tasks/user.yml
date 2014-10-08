@@ -1,0 +1,19 @@
+---
+- name: groupadd ansible
+  group: gid=200 name=ansible state=present
+- name: useradd ansible
+  user: uid=200 name=ansible group=ansible shell=/bin/bash
+- name: mkdir .ssh
+  file:
+    path=~ansible/.ssh
+    owner=ansbile
+    group=ansible
+    mode=0700
+    state=directory
+- name: copy public key
+  copy:
+    src=files/authorized_keys
+    dest=~ansible/.ssh/authorized_keys
+    owner=ansible
+    group=ansible
+    mode=0600
