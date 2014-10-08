@@ -6,7 +6,7 @@
 - name: mkdir .ssh
   file:
     path=~ansible/.ssh
-    owner=ansbile
+    owner=ansible
     group=ansible
     mode=0700
     state=directory
