@@ -1,8 +1,18 @@
 ---
-- name: vagrant plugin list
-  shell: vagrant plugin list | grep vagrant-kvm
+- name: plugin list vagrant-libvirt
+  shell: vagrant plugin list | grep vagrant-libvirt
   ignore_errors: yes
-  register: vagrant_plugin_list
-- name: vagrant plugin install
-  command: vagrant plugin install vagrant-kvm
-  when: vagrant_plugin_list|failed
+  register: plugin_libvirt
+- name: apt-get install
+  command: apt-get -y install libxslt-dev libxml2-dev libvirt-dev
+  when: plugin_libvirt|failed
+- name:  plugin install vagrant-libvirt
+  command: vagrant plugin install vagrant-libvirt
+  when: plugin_libvirt|failed
+- name:  plugin list vagrant-mutate
+  shell: vagrant plugin list | grep vagrant-mutate
+  ignore_errors: yes
+  register: plugin_mutate
+- name:  plugin install vagrant-mutate
+  command: vagrant plugin install vagrant-mutate
+  when: plugin_mutate|failed
