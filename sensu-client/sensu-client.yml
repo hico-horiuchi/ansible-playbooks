@@ -6,7 +6,7 @@
       register: install_check
       ignore_errors: yes
 
-    - include: tasks/sensu-client.yml
+    - include: tasks/client.yml
       when: install_check|failed
 
     - include: tasks/sensu-community-plugins.yml
