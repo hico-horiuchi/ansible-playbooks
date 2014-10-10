@@ -9,5 +9,5 @@
     - include: tasks/client.yml
       when: install_check|failed
 
-    - include: tasks/sensu-community-plugins.yml
+    - include: tasks/community-plugins.yml
     - include: tasks/restart.yml
