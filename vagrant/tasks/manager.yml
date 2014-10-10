@@ -2,11 +2,13 @@
 - name: gem install parallel
   gem: name=parallel state=present
   sudo: yes
+
 - name: scp files/manager vagrant/
   copy:
     src=files/manager
     dest={{ansible_env.HOME}}/vagrant/manager
     mode=775
+
 - name: ./manager -c up
   command:
     ./manager -c up -n {{instance_num}}

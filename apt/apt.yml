@@ -1,11 +1,14 @@
+---
 - hosts: all
   sudo: yes
   tasks:
-    - name: apt-get update
-      apt: update_cache=yes
-    - name: apt-get upgrade
-      apt: upgrade=dist
+    - name: apt-get update & upgrade
+      apt:
+        update_cache=yes
+        upgrade=dist
+
     - name: apt-get autoremove
       command: apt-get -y autoremove
+
     - name: apt-get clean
       command: apt-get -y clean

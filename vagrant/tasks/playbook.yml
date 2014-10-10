@@ -4,3 +4,4 @@
     repo={{repo}}
     dest={{dest}}
     accept_hostkey=yes
+    force=yes

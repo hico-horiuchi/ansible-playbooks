@@ -1,0 +1,7 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - include: tasks/useradd.yml
+    - include: tasks/apt.yml
+    - include: tasks/apache-bench.yml

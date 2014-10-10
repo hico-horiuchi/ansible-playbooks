@@ -1,17 +1,15 @@
-- apt:
+---
+- name: install git
+  apt:
     name=git
     state=present
-- command: test -d /etc/sensu/community-plugins
-  register: repository_check
-  ignore_errors: yes
-- git:
+
+- name: git clone/pull sensu-community-plugins
+  git:
     repo=git://github.com/sensu/sensu-community-plugins.git
-    dest=/etc/sensu/plugins/community-plugins
+    dest=/etc/sensu/community-plugins
     accept_hostkey=yes
     force=yes
-  when: repository_check|failed
-- command:
-    git pull
-    chdir=/etc/sensu/plugins/community-plugins
-  when: repository_check|success
-- shell: find /etc/sensu/community-plugins/plugins -type f | xargs chmod 755
+
+- name: chmod +x plugins
+  shell: find /etc/sensu/community-plugins/plugins -type f | xargs chmod 755

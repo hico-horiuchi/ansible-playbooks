@@ -1,2 +1,6 @@
-- command: gem update --force --no-ri --no-rdoc
-- command: gem cleanup
+---
+- name: gem update
+  command: gem update --force --no-ri --no-rdoc
+
+- name: gem cleanup
+  command: gem cleanup

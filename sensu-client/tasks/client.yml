@@ -1,9 +1,14 @@
-- name: Install the repository public key
-  apt_key: url=https://repos.sensuapp.org/apt/pubkey.gpg state=present
-- name: Add the repository
+---
+- name: install the repository public key
+  apt_key:
+    url=https://repos.sensuapp.org/apt/pubkey.gpg
+    state=present
+
+- name: add the repository
   copy:
     src=files/sensu.list
     dest=/etc/apt/sources.list.d/
+
 - name: apt-get update
   apt:
     update_cache=yes
@@ -11,14 +16,16 @@
   apt:
     name=sensu
     state=present
-- name: Create SSL directory
+
+- name: create ssl directory
   file:
     path=/etc/sensu/ssl
     owner=sensu
     group=sensu
     mode=0755
     state=directory
-- name: Copy SSL certificates
+
+- name: copy ssl certificates
   copy:
     src=files/{{item}}.pem
     dest=/etc/sensu/ssl/{{item}}.pem
@@ -28,7 +35,8 @@
   with_items:
     - cert
     - key
-- name: Configure Sensu connections
+
+- name: configure sensu connections
   template:
     src=templates/{{item}}.json.j2
     dest=/etc/sensu/conf.d/{{item}}.json
@@ -38,5 +46,9 @@
   with_items:
     - rabbitmq
     - client
-- name: Use embedded Ruby
-  shell: echo 'EMBEDDED_RUBY=true' > /etc/default/sensu
+
+- name: use embedded ruby
+  lineinfile:
+    dest=/etc/default/sensu
+    regexp='^EMBEDDED_RUBY=false$'
+    line='EMBEDDED_RUBY=true'

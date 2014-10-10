@@ -1,9 +1,12 @@
+---
 - hosts: ruby
   sudo: yes
   tasks:
-    - shell: /usr/bin/env ruby --version | grep {{ruby_version}}
+    - shell: ruby --version
       register: ruby_version_check
       ignore_errors: yes
-    - include: tasks/ruby.yml
+
+    - include: tasks/compile.yml
       when: ruby_version_check|failed
+
     - include: tasks/gem.yml

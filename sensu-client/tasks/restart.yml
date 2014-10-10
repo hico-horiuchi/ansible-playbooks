@@ -1,8 +1,6 @@
-- hosts: sensu-client
-  sudo: yes
-  tasks:
-    - name: Restart Sensu services
-      service:
-        name=sensu-client
-        enabled=yes
-        state=restarted
+---
+- name: restart sensu services
+  service:
+    name=sensu-client
+    enabled=yes
+    state=restarted
