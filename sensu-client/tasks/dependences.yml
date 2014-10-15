@@ -1,0 +1,5 @@
+---
+- name: install bc
+  apt:
+    name=bc
+    state=present

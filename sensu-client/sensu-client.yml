@@ -9,5 +9,6 @@
     - include: tasks/client.yml
       when: install_check|failed
 
+    - include: tasks/dependences.yml
     - include: tasks/community-plugins.yml
     - include: tasks/restart.yml
