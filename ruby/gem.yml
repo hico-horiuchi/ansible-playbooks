@@ -1,0 +1,9 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: gem update
+      command: gem update --force --no-ri --no-rdoc
+
+    - name: gem cleanup
+      shell: yes | gem cleanup

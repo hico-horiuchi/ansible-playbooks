@@ -3,4 +3,4 @@
   command: gem update --force --no-ri --no-rdoc
 
 - name: gem cleanup
-  command: gem cleanup
+  shell: yes | gem cleanup
