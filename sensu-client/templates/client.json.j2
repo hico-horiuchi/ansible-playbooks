@@ -2,6 +2,9 @@
   "client": {
     "name": "{{inventory_hostname}}",
     "address": "{{ansible_ssh_host}}",
-    "subscriptions": [ "all", "system"{{sensu_subscriptions}} ]
+    "subscriptions": [ "all", "system"{{sensu_subscriptions}} ],
+    "keepalive": {
+      "handlers": [ "hubot", "elasticsearch_handler" ]
+    }
   }
 }
