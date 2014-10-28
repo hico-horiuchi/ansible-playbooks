@@ -3,3 +3,8 @@
   apt:
     name=bc
     state=present
+
+- name: install lm-sensors
+  apt:
+    name=lm-sensors
+    state=present

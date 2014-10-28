@@ -4,7 +4,12 @@
     "address": "{{ansible_ssh_host}}",
     "subscriptions": [ "all", "system"{{sensu_subscriptions}} ],
     "keepalive": {
-      "handlers": [ "hubot", "elasticsearch_handler" ]
+      "thresholds": {
+        "warning": 120,
+        "critical": 180
+      },
+      "handlers": [ "hubot", "elasticsearch_handler" ],
+      "refresh": 1800
     }
   }
 }
