@@ -12,4 +12,5 @@
 
     - include: tasks/dependences.yml
     - include: tasks/community-plugins.yml
+    - include: tasks/plugins.yml
     - include: tasks/restart.yml
