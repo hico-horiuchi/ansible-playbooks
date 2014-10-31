@@ -25,10 +25,11 @@ class LinuxPacketMetrics < Sensu::Plugin::Metric::CLI::Graphite
       iface = File.basename iface_path
       next if iface == 'lo'
 
-      traffic = 0
-      traffic += File.open(iface_path + '/statistics/tx_bytes').read.to_i
-      traffic += File.open(iface_path + '/statistics/rx_bytes').read.to_i
-      ifaces[iface] = traffic
+      stats = {}
+      stats[:tx_bytes] = File.open(iface_path + '/statistics/tx_bytes').read.to_i
+      stats[:rx_bytes] = File.open(iface_path + '/statistics/rx_bytes').read.to_i
+      stats[:traffic] = stats[:tx_bytes] + stats[:rx_bytes]
+      ifaces[iface] = stats
     end
 
     ifaces
@@ -41,10 +42,15 @@ class LinuxPacketMetrics < Sensu::Plugin::Metric::CLI::Graphite
     sleep config[:sleep]
     net_stats_after = get_net_stats
 
-    net_stats_after.each do |iface, traffic|
-      diff = traffic - net_stats_before[iface]
-      output "#{config[:scheme]}.#{iface}.traffic_bytes", diff, timestamp
+    all = 0
+    net_stats_after.each do |iface, stats|
+      stats.each do |key, value|
+        diff = value - net_stats_before[iface][key]
+        output "#{config[:scheme]}.#{iface}.#{key}", diff, timestamp
+        all += diff if key == :traffic
+      end
     end
+    output "#{config[:scheme]}.all.traffic", all, timestamp
 
     ok
   end
