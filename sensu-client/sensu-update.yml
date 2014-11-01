@@ -1,6 +1,7 @@
 ---
 - hosts: sensu-client
   sudo: yes
+  gather_facts: no
   tasks:
     - name: configure sensu connections
       template:

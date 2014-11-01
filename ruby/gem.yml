@@ -1,6 +1,7 @@
 ---
 - hosts: all
   sudo: yes
+  gather_facts: no
   tasks:
     - name: gem update
       command: gem update --force --no-ri --no-rdoc

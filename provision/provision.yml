@@ -1,6 +1,7 @@
 ---
 - hosts: all
   sudo: yes
+  gather_facts: no
   tasks:
     - include: tasks/useradd.yml
     - include: tasks/apt.yml

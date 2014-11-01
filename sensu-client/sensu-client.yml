@@ -1,6 +1,7 @@
 ---
 - hosts: sensu-client
   sudo: yes
+  gather_facts: no
   tasks:
     - command: test -f /etc/apt/sources.list.d/sensu.list
       register: install_check

@@ -1,6 +1,7 @@
 ---
 - hosts: all
   sudo: yes
+  gather_facts: no
   tasks:
     - name: apt-get update & upgrade
       apt:

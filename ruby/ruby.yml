@@ -1,6 +1,7 @@
 ---
 - hosts: ruby
   sudo: yes
+  gather_facts: no
   tasks:
     - shell: ruby --version
       register: ruby_version_check

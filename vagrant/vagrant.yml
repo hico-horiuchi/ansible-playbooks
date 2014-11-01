@@ -1,5 +1,6 @@
 ---
 - hosts: vagrant
+  gather_facts: no
   vars:
     dest: '{{ansible_env.HOME}}/ansible-playbooks'
     repo: 'git://github.com/hico-horiuchi/ansible-playbooks.git'
