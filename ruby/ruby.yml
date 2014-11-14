@@ -3,7 +3,7 @@
   sudo: yes
   gather_facts: no
   tasks:
-    - shell: ruby --version
+    - shell: ruby --version | grep {{ ruby_version }}
       register: ruby_version_check
       ignore_errors: yes
 
