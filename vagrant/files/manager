@@ -1,22 +1,29 @@
 #!/usr/bin/env ruby
 
-require 'optparse'
 require 'parallel'
 
-options = {}
+CMD = %w(destroy provision up)
 
-OptionParser.new do |opt|
-  opt.on('-c VALUE', 'vagrant command')  { |v| options[:c] = v }
-  opt.on('-n VALUE', 'instances number') { |v| options[:n] = v.to_i }
-  opt.parse! ARGV
+if ARGV.empty? || !CMD.include?(ARGV.first)
+  puts 'Usage: ./manager <command>'
+  puts ''
+  puts 'Commands:'
+  puts '    destroy    stops and deletes all traces of the vagrant machine'
+  puts '    provision  provisions the vagrant machine'
+  puts '    up         starts and provisions the vagrant environment'
+  exit 1
 end
-options[:c] += ' --provider libvirt' if options[:c] == 'up'
-options[:c] += ' -f'                 if options[:c] == 'destroy'
 
-Parallel.each 1..options[:n], in_threads: options[:n] do |i|
+command = ARGV.first
+command += ' --provider libvirt' if command == 'up'
+command += ' -f'                 if command == 'destroy'
+
+number = Dir::glob('instance-*').size
+
+Parallel.each 1..number, in_threads: number do |i|
   sleep i
-  puts "\e[35m==> #{options[:c]} instance-#{i}...\e[0m"
-  result = system "cd instance-#{i} && vagrant #{options[:c]} > /dev/null"
-  puts "\e[32m==> Success #{options[:c]} instance-#{i}\e[0m" if result
-  puts "\e[31m==> Failure #{options[:c]} instance-#{i}\e[0m" unless result
+  puts "==> #{command} instance-#{i}..."
+  result = system "cd instance-#{i} && vagrant #{command} > /dev/null"
+  puts "\e[32m==> Success #{command} instance-#{i}\e[0m" if result
+  puts "\e[31m==> Failure #{command} instance-#{i}\e[0m" unless result
 end
