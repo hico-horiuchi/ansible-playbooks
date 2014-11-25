@@ -12,6 +12,7 @@
 - name: apt-get update
   apt:
     update_cache=yes
+
 - name: Install Sensu
   apt:
     name=sensu
