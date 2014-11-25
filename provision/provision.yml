@@ -5,4 +5,5 @@
   tasks:
     - include: tasks/useradd.yml
     - include: tasks/apt.yml
-    - include: tasks/apache-bench.yml
+    - include: tasks/packages.yml
+    - include: tasks/ntpdate.yml

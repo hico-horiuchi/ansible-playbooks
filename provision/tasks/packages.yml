@@ -3,3 +3,8 @@
   apt:
     name=apache2-utils
     state=present
+
+- name: install httping
+  apt:
+    name=httping
+    state=present
