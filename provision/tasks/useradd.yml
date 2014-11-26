@@ -12,6 +12,9 @@
     group=ansible
     shell=/bin/bash
 
+- name: add admin
+  command: usermod -G admin ansible
+
 - name: mkdir .ssh
   file:
     path=~ansible/.ssh
