@@ -1,7 +1,13 @@
 ---
-- hosts: all
-  sudo: yes
+- hosts: reboot
   gather_facts: no
   tasks:
     - name: reboot
-      shell: sleep 2s && reboot &
+      command: /sbin/shutdown -r now
+      sudo: yes
+
+    - name: wait go down
+      local_action: wait_for host={{ ansible_ssh_host }} port=22 state=stopped
+
+    - name: wait come up
+      local_action: wait_for host={{ ansible_ssh_host }} port=22 delay=30
