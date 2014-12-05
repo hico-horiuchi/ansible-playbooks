@@ -11,5 +11,5 @@
 
 - name: ./manager -c up
   command:
-    ./manager -c up -n {{instance_num}}
+    ./manager up
     chdir={{ansible_env.HOME}}/vagrant
