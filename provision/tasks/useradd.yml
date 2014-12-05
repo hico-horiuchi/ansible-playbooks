@@ -10,10 +10,8 @@
     uid=200
     name=ansible
     group=ansible
+    groups=admin
     shell=/bin/bash
-
-- name: add admin
-  command: usermod -G admin ansible
 
 - name: mkdir .ssh
   file:
