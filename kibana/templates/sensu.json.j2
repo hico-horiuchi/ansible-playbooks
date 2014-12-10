@@ -1,0 +1,102 @@
+{
+  "title": "Kibana",
+  "services": {
+    "query": {
+      "list": {},
+      "ids": []
+    },
+    "filter": {
+      "list": {},
+      "ids": []
+    }
+  },
+  "rows": [
+    {
+      "title": "kibana",
+      "height": "600px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 2,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "mode": "markdown",
+          "content": "![kibana](img/kibana.png)",
+          "style": {},
+          "title": "images"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "mode": "markdown",
+          "content": "{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}",
+          "style": {},
+          "title": "hosts"
+        }
+      ],
+      "notice": false
+    }
+  ],
+  "editable": true,
+  "failover": false,
+  "index": {
+    "interval": "none",
+    "pattern": "[logstash-]YYYY.MM.DD",
+    "default": "_all",
+    "warm_fields": false
+  },
+  "style": "dark",
+  "panel_hints": false,
+  "pulldowns": [
+    {
+      "type": "query",
+      "collapse": false,
+      "notice": false,
+      "enable": false,
+      "query": "*",
+      "pinned": true,
+      "history": [],
+      "remember": 10
+    },
+    {
+      "type": "filtering",
+      "collapse": false,
+      "notice": false,
+      "enable": false
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "notice": false,
+      "enable": false,
+      "status": "Stable",
+      "time_options": [""],
+      "refresh_intervals": [""],
+      "timefield": ""
+    }
+  ],
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": false,
+    "save_local": false,
+    "save_default": false,
+    "save_temp": false,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": false,
+    "load_elasticsearch": false,
+    "load_elasticsearch_size": 20,
+    "load_local": false,
+    "hide": false
+  },
+  "refresh": false
+}
