@@ -1,37 +1,51 @@
 {
-  "title": "Kibana",
+  "title": "kibana",
   "services": {
     "query": {
-      "list": {},
-      "ids": []
+      "list": {
+        "0": {
+          "query": "*",
+          "alias": "",
+          "color": "#7EB26D",
+          "id": 0,
+          "pin": false,
+          "type": "lucene",
+          "enable": true
+        }
+      },
+      "ids": [
+        0
+      ]
     },
     "filter": {
-      "list": {},
-      "ids": []
+      "list": {
+        "0": {
+          "type": "time",
+          "field": "@timestamp",
+          "from": "now-24h",
+          "to": "now",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 0
+        }
+      },
+      "ids": [
+        0
+      ]
     }
   },
   "rows": [
     {
-      "title": "kibana",
-      "height": "600px",
+      "title": "sensu",
+      "height": "575px",
       "editable": false,
       "collapse": false,
-      "collapsable": true,
+      "collapsable": false,
       "panels": [
         {
           "error": false,
-          "span": 3,
-          "editable": false,
-          "type": "text",
-          "loadingEditor": false,
-          "mode": "markdown",
-          "content": "![kibana](img/kibana.png)",
-          "style": {},
-          "title": "images"
-        },
-        {
-          "error": false,
-          "span": 5,
+          "span": 4,
           "editable": false,
           "type": "text",
           "loadingEditor": false,
@@ -39,16 +53,58 @@
           "content": "{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}",
           "style": {},
           "title": "hosts"
+        },
+        {
+          "error": false,
+          "span": 8,
+          "editable": false,
+          "type": "table",
+          "loadingEditor": false,
+          "size": 15,
+          "pages": 5,
+          "offset": 0,
+          "sort": [
+            "@timestamp",
+            "desc"
+          ],
+          "overflow": "height",
+          "fields": [
+            "@timestamp",
+            "client",
+            "check",
+            "output"
+          ],
+          "highlight": [],
+          "sortable": true,
+          "header": true,
+          "paging": true,
+          "field_list": false,
+          "all_fields": false,
+          "trimFactor": 200,
+          "localTime": false,
+          "timeField": "@timestamp",
+          "spyable": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ]
+          },
+          "style": {
+            "font-size": "9pt"
+          },
+          "normTimes": true,
+          "title": "alerts"
         }
       ],
       "notice": false
     }
   ],
-  "editable": true,
+  "editable": false,
   "failover": false,
   "index": {
-    "interval": "none",
-    "pattern": "[logstash-]YYYY.MM.DD",
+    "interval": "day",
+    "pattern": "[sensu-handler-]YYYY.MM.DD",
     "default": "_all",
     "warm_fields": false
   },
@@ -57,9 +113,9 @@
   "pulldowns": [
     {
       "type": "query",
-      "collapse": false,
+      "collapse": true,
       "notice": false,
-      "enable": false,
+      "enable": true,
       "query": "*",
       "pinned": true,
       "history": [],
@@ -67,9 +123,9 @@
     },
     {
       "type": "filtering",
-      "collapse": false,
-      "notice": false,
-      "enable": false
+      "collapse": true,
+      "notice": true,
+      "enable": true
     }
   ],
   "nav": [
@@ -77,11 +133,17 @@
       "type": "timepicker",
       "collapse": false,
       "notice": false,
-      "enable": false,
+      "enable": true,
       "status": "Stable",
-      "time_options": [""],
-      "refresh_intervals": [""],
-      "timefield": ""
+      "time_options": [
+        "24h"
+      ],
+      "refresh_intervals": [
+        "1m"
+      ],
+      "timefield": "@timestamp",
+      "now": true,
+      "filter_id": 0
     }
   ],
   "loader": {
@@ -98,5 +160,5 @@
     "load_local": false,
     "hide": false
   },
-  "refresh": false
+  "refresh": "1m"
 }
