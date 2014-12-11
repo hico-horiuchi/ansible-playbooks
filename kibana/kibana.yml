@@ -1,6 +1,7 @@
 ---
 - hosts: kibana
   sudo: yes
+  gather_facts: no
   tasks:
     - name: create each host.json
       template:
