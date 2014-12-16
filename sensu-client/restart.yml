@@ -1,5 +1,6 @@
 ---
 - hosts: sensu-client
   sudo: yes
+  gather_facts: no
   tasks:
     - include: tasks/restart.yml
