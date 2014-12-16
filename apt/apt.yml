@@ -2,7 +2,17 @@
 - hosts: all
   sudo: yes
   gather_facts: no
+  vars:
+    colon: ':'
   tasks:
+    - name: notify to typetalk
+      typetalk:
+        client_id={{ typetalk_client_id }}
+        client_secret={{ typetalk_client_secret }}
+        topic={{ typetalk_topic }}
+        msg='{{ colon }}laughing{{ colon }} サーバーアップデートを開始します!'
+      when: typetalk_notify
+
     - name: apt-get update & upgrade
       apt:
         update_cache=yes

@@ -1,3 +1,9 @@
+[all:vars]
+typetalk_notify=true
+typetalk_client_id=abcdefghijklmnopqrstuvwxyz123456
+typetalk_client_secret=abcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz123
+typetalk_topic=1234
+
 [sensu-client]
 localhost ansible_ssh_host=127.0.0.1
 
@@ -9,7 +15,7 @@ sensu_rabbitmq_user=sensu
 sensu_rabbitmq_password=mypass
 
 [ruby:vars]
-ruby_version=2.1.2
+ruby_version=2.1.5
 
 [vagrant:vars]
 box_url=https://vagrant-kvm-boxes-si.s3.amazonaws.com/trusty64-kvm-20140418.box
