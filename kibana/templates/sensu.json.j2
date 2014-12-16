@@ -50,7 +50,7 @@
           "type": "text",
           "loadingEditor": false,
           "mode": "markdown",
-          "content": "{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}",
+          "content": "![kibana](img/kibana.png)\n\n{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}",
           "style": {},
           "title": "hosts"
         },
