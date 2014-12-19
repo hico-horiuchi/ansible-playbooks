@@ -20,4 +20,5 @@
         client_secret={{ typetalk_client_secret }}
         topic={{ typetalk_topic }}
         msg='{{ colon }}wink{{ colon }} アップデートが完了しました! 再起動中です'
+      run_once: true
       when: typetalk_notify

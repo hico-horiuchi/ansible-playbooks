@@ -11,6 +11,7 @@
         client_secret={{ typetalk_client_secret }}
         topic={{ typetalk_topic }}
         msg='{{ colon }}laughing{{ colon }} サーバーアップデートを開始します!'
+      run_once: true
       when: typetalk_notify
 
     - name: apt-get update & upgrade
