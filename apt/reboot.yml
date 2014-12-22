@@ -4,15 +4,23 @@
   vars:
     colon: ':'
   tasks:
+    - name: check reboot required
+      shell: cat /run/motd.dynamic | grep 'System restart required'
+      register: reboot_check
+      ignore_errors: yes
+
     - name: reboot
       command: /sbin/shutdown -r now
       sudo: yes
+      when: reboot_check|success
 
     - name: wait go down
       local_action: wait_for host={{ ansible_ssh_host }} port=22 state=stopped
+      when: reboot_check|success
 
     - name: wait come up
       local_action: wait_for host={{ ansible_ssh_host }} port=22 delay=30
+      when: reboot_check|success
 
     - name: notify to typetalk
       typetalk:
