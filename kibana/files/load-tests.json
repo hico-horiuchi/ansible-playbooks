@@ -267,7 +267,7 @@
           "scale": 1,
           "y_format": "bytes",
           "grid": {
-            "max": 1048576,
+            "max": 2621440,
             "min": 0
           },
           "queries": {
