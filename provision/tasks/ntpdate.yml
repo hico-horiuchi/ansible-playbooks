@@ -1,3 +1,9 @@
 ---
-- name: ntpdate
+- name: stop & disable ntpd
+  service:
+    name=ntp
+    state=stopped
+    enabled=no
+
+- name: ntpdate ntp.nict.jp
   command: ntpdate ntp.nict.jp
