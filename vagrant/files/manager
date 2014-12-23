@@ -2,7 +2,7 @@
 
 require 'parallel'
 
-CMD = %w(destroy halt provision up)
+CMD = %w(destroy halt provision reload up)
 
 if ARGV.empty? || !CMD.include?(ARGV.first)
   puts 'Usage: ./manager <command>'
@@ -11,6 +11,7 @@ if ARGV.empty? || !CMD.include?(ARGV.first)
   puts '    destroy    stops and deletes all traces of the vagrant machine'
   puts '    halt       stops the vagrant machine'
   puts '    provision  provisions the vagrant machine'
+  puts '    reload     restarts vagrant machine, loads new Vagrantfile configuration'
   puts '    up         starts and provisions the vagrant environment'
   exit 1
 end
