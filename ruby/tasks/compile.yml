@@ -1,6 +1,6 @@
 ---
 - name: install dependent packages
-  command: apt-get -y install libssl-dev zlib1g-dev libreadline6-dev make
+  command: apt-get -y install libssl-dev zlib1g-dev libreadline6-dev libffi-dev make
 
 - name: download source code
   shell:
