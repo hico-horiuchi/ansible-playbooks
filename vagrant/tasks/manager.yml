@@ -9,7 +9,7 @@
     dest={{ansible_env.HOME}}/vagrant/manager
     mode=775
 
-- name: ./manager -c up
+- name: ./manager up
   command:
     ./manager up
     chdir={{ansible_env.HOME}}/vagrant
