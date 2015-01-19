@@ -1,15 +1,21 @@
-Vagrant.configure '2' do |config|
-  config.vm.hostname = 'instance-{{item}}'
-  config.vm.box = '{{box_name}}'
-  config.vm.network :public_network, dev: 'br0', mode: 'bridge', ip: '192.168.11.3{{item}}'
+VAGRANTFILE_API_VERSION = '2'
 
-  config.vm.provider :libvirt do |domain|
+Vagrant.configure VAGRANTFILE_API_VERSION do |config|
+{% for item in range(1, instance_num + 1)  %}
+  config.vm.define 'bench-{{item}}' do |bench|
+    bench.vm.hostname = 'bench-{{item}}'
+    bench.vm.box = 'trusty64'
+    bench.vm.network :public_network, dev: 'br0', mode: 'bridge', ip: '192.168.11.3{{item}}'
+  end
+
+{% endfor %}
+  config.vm.provider 'libvirt' do |domain|
     domain.cpus = 1
     domain.memory = 512
     domain.volume_cache = 'writeback'
   end
 
   config.vm.provision 'ansible' do |ansible|
-    ansible.playbook = '{{ansible_env.HOME}}/ansible-playbooks/{{playbook_path}}'
+    ansible.playbook = '{{ansible_env.HOME}}/ansible-playbooks/provision/provision.yml'
   end
 end

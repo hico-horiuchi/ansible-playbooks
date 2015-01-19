@@ -6,6 +6,5 @@
   tasks:
     - include: tasks/plugin.yml
     - include: tasks/playbook.yml
-    - include: tasks/directory.yml
+    - include: tasks/box.yml
     - include: tasks/vagrantfile.yml
-    - include: tasks/manager.yml

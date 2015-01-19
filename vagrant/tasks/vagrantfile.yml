@@ -1,20 +1,16 @@
 ---
-- name: scp templates/Vagrantfile vagrant/instance-*
+- name: mkdir vagrant
+  file:
+    path={{ansible_env.HOME}}/vagrant
+    state=directory
+
+- name: scp templates/Vagrantfile vagrant/
   template:
     src=templates/Vagrantfile.j2
-    dest={{ansible_env.HOME}}/vagrant/instance-{{item}}/Vagrantfile
+    dest={{ansible_env.HOME}}/vagrant/Vagrantfile
     mode=664
-  with_sequence: count={{instance_num}}
 
-- name: box list
-  shell: vagrant box list | grep {{box_name}}
-  ignore_errors: yes
-  register: box_list
-
-- name: box add
-  command: vagrant box add {{box_name}} {{box_url}}
-  when: box_list|failed
-
-- name: mutate --input_provider kvm libvirt
-  command: vagrant mutate {{box_name}} --input_provider kvm libvirt
-  when: box_list|failed
+# - name: vagrant up
+#   command:
+#     vagrant up
+#     chdir={{ansible_env.HOME}}/vagrant
