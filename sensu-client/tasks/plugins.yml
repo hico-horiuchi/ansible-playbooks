@@ -11,3 +11,4 @@
     - disk-usage-metrics.rb
     - memory-metrics-percent.rb
     - net-traffic-metrics.rb
+    - snmp-traffic-metrics.rb
