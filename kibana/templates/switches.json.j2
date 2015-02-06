@@ -1,50 +1,24 @@
 {
-  "title": "{{ item }}",
+  "title": "switches",
   "services": {
     "query": {
       "list": {
-        "0": {
-          "id": 0,
-          "color": "#28B62C",
+{% for host in groups['switch'] %}
+        "{{ loop.index0 }}": {
+          "id": {{ loop.index0 }},
+          "color": "#A5A5A5",
           "alias": "",
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.cpu.usage\""
-        },
-        "1": {
-          "id": 1,
-          "color": "#75CAEB",
-          "alias": "",
-          "pin": false,
-          "type": "lucene",
-          "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.memory_percent.usedWOBuffersCaches\""
-        },
-        "2": {
-          "id": 2,
-          "color": "#FF851B",
-          "alias": "",
-          "pin": false,
-          "type": "lucene",
-          "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.disk_usage.root.used_percentage\""
-        },
-        "3": {
-          "id": 3,
-          "color": "#FF4136",
-          "alias": "",
-          "pin": false,
-          "type": "lucene",
-          "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.net.all.traffic\""
-        }
+          "query": "key:\"{{ hostvars[host]['ansible_ssh_host'] }}.snmp.all.traffic\""
+        }{% if not loop.last %},{% endif %}
+{% endfor %}
       },
       "ids": [
-        0,
-        1,
-        2,
-        3
+{% for host in groups['switch'] %}
+        {{ loop.index0 }}{% if not loop.last %},{% endif %}
+{% endfor %}
       ]
     },
     "filter": {
@@ -73,91 +47,7 @@
       "collapse": false,
       "collapsable": false,
       "panels": [
-        {
-          "span": 12,
-          "editable": false,
-          "type": "histogram",
-          "loadingEditor": false,
-          "mode": "mean",
-          "time_field": "@timestamp",
-          "value_field": "value",
-          "x-axis": true,
-          "y-axis": true,
-          "scale": 1,
-          "y_format": "none",
-          "grid": {
-            "max": 100,
-            "min": 0
-          },
-          "queries": {
-            "mode": "selected",
-            "ids": [
-              0,
-              1,
-              2
-            ]
-          },
-          "annotate": {
-            "enable": false,
-            "query": "*",
-            "size": 20,
-            "field": "_type",
-            "sort": [
-              "_score",
-              "desc"
-            ]
-          },
-          "auto_int": false,
-          "resolution": 100,
-          "interval": "1m",
-          "intervals": [
-            "auto",
-            "1s",
-            "1m",
-            "5m",
-            "10m",
-            "30m",
-            "1h",
-            "3h",
-            "12h",
-            "1d",
-            "1w",
-            "1y"
-          ],
-          "lines": true,
-          "fill": 1,
-          "linewidth": 1,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "spyable": false,
-          "zoomlinks": false,
-          "options": false,
-          "legend": true,
-          "show_query": true,
-          "interactive": false,
-          "legend_counts": false,
-          "timezone": "browser",
-          "percentage": false,
-          "zerofill": true,
-          "derivative": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "query_as_alias": true
-          },
-          "title": "metrics"
-        }
-      ],
-      "notice": false
-    },
-    {
-      "title": "sensu",
-      "height": "300px",
-      "editable": false,
-      "collapse": false,
-      "collapsable": false,
-      "panels": [
+{% for host in groups['switch'] %}
         {
           "span": 12,
           "editable": false,
@@ -171,13 +61,13 @@
           "scale": 1,
           "y_format": "bytes",
           "grid": {
-            "max": 1048576,
+            "max": 524288,
             "min": 0
           },
           "queries": {
             "mode": "selected",
             "ids": [
-              3
+              {{ loop.index0 }}
             ]
           },
           "annotate": {
@@ -229,8 +119,9 @@
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "traffic"
-        }
+          "title": "{{ host }}"
+        }{% if not loop.last %},{% endif %}
+{% endfor %}
       ],
       "notice": false
     }
@@ -259,7 +150,7 @@
     {
       "type": "filtering",
       "collapse": true,
-      "notice": true,
+      "notice": false,
       "enable": true
     }
   ],
@@ -274,7 +165,7 @@
         "24h"
       ],
       "refresh_intervals": [
-        "1m"
+        "30s"
       ],
       "timefield": "@timestamp",
       "now": true,
@@ -295,5 +186,5 @@
     "load_local": false,
     "hide": false
   },
-  "refresh": "1m"
+  "refresh": "30s"
 }

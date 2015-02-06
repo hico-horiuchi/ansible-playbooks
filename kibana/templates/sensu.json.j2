@@ -50,9 +50,9 @@
           "type": "text",
           "loadingEditor": false,
           "mode": "markdown",
-          "content": "![kibana](img/kibana.png)\n\n{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}",
+          "content": "###### SERVERS\n\n{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}\n###### RUBY ON RAILS\n\n{% for host in groups['rails'] %}- [{{ host }}](index.html#/dashboard/file/rails_{{ host }}.json)\n{% endfor %}\n###### OTHERS\n\n- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [switches](index.html#/dashboard/file/switches.json)\n",
           "style": {},
-          "title": "hosts"
+          "title": "dashboards"
         },
         {
           "error": false,

@@ -13,19 +13,36 @@
       with_items:
         - load-tests
 
-    - name: create each host.json
+    - name: create each server.json
       template:
-        src=templates/host.json.j2
+        src=templates/server.json.j2
         dest=/opt/kibana/app/dashboards/{{ item }}.json
         owner=root
         group=root
         mode=0644
       with_items: groups['sensu-client']
 
+    - name: create each rails.json
+      template:
+        src=templates/rails.json.j2
+        dest=/opt/kibana/app/dashboards/rails_{{ item }}.json
+        owner=root
+        group=root
+        mode=0644
+      with_items: groups['rails']
+
     - name: create sensu.json
       template:
         src=templates/sensu.json.j2
         dest=/opt/kibana/app/dashboards/sensu.json
+        owner=root
+        group=root
+        mode=0644
+
+    - name: create switches.json
+      template:
+        src=templates/switches.json.j2
+        dest=/opt/kibana/app/dashboards/switches.json
         owner=root
         group=root
         mode=0644
