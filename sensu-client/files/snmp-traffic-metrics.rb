@@ -40,14 +40,21 @@ class SNMPTrafficMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   def run
     timestamp = Time.now.to_i
+    threads = []
 
     config[:hosts].split(',').each do |host|
-      net_traffic_before = get_all_traffic(host, config[:community])
-      sleep config[:sleep]
-      net_traffic_after = get_all_traffic(host, config[:community])
+      threads << Thread.new do
+        net_traffic_before = get_all_traffic(host, config[:community])
+        sleep config[:sleep]
+        net_traffic_after = get_all_traffic(host, config[:community])
 
-      all_traffic = net_traffic_after - net_traffic_before
-      output "#{host}.snmp.all.traffic", all_traffic, timestamp
+        all_traffic = net_traffic_after - net_traffic_before
+        output "#{host}.snmp.all.traffic", all_traffic, timestamp
+      end
+    end
+
+    threads.each do |thread|
+      thread.join
     end
 
     ok
