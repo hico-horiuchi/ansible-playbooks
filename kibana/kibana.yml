@@ -12,6 +12,7 @@
         mode=0644
       with_items:
         - load-tests
+        - ssh-invalid
 
     - name: create each server.json
       template:

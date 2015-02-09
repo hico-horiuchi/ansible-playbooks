@@ -1,16 +1,16 @@
 {
-  "title": "kibana",
+  "title": "ssh invalid",
   "services": {
     "query": {
       "list": {
         "0": {
-          "query": "*",
-          "alias": "",
-          "color": "#a5a5a5",
           "id": 0,
+          "color": "#a5a5a5",
+          "alias": "",
           "pin": false,
           "type": "lucene",
-          "enable": true
+          "enable": true,
+          "query": "@log_name:\"air.ssh.access\""
         }
       },
       "ids": [
@@ -37,64 +37,69 @@
   },
   "rows": [
     {
-      "title": "sensu",
-      "height": "600px",
+      "title": "fluentd",
+      "height": "400px",
       "editable": false,
       "collapse": false,
       "collapsable": false,
       "panels": [
         {
           "error": false,
-          "span": 4,
-          "editable": false,
-          "type": "text",
-          "loadingEditor": false,
-          "mode": "markdown",
-          "content": "###### SERVERS\n\n{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}\n###### RUBY ON RAILS\n\n{% for host in groups['rails'] %}- [{{ host }}](index.html#/dashboard/file/rails_{{ host }}.json)\n{% endfor %}\n###### OTHERS\n\n- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [switches](index.html#/dashboard/file/switches.json)\n- [ssh-invalid](index.html#/dashboard/file/ssh-invalid.json)\n",
-          "style": {},
-          "title": "dashboards"
-        },
-        {
-          "error": false,
           "span": 8,
           "editable": false,
-          "type": "table",
+          "type": "map",
           "loadingEditor": false,
-          "size": 15,
-          "pages": 5,
-          "offset": 0,
-          "sort": [
-            "@timestamp",
-            "desc"
+          "map": "world",
+          "colors": [
+            "#bc3539",
+            "#d9a831",
+            "#59cb8a",
+            "#449ad6"
           ],
-          "overflow": "height",
-          "fields": [
-            "@timestamp",
-            "client",
-            "check",
-            "output"
-          ],
-          "highlight": [],
-          "sortable": true,
-          "header": true,
-          "paging": true,
-          "field_list": false,
-          "all_fields": false,
-          "trimFactor": 200,
-          "localTime": false,
-          "timeField": "@timestamp",
+          "size": 100,
+          "exclude": [],
           "spyable": false,
           "queries": {
-            "mode": "all",
+            "mode": "selected",
             "ids": [
               0
             ]
           },
+          "title": "country",
+          "field": "country"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": false,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "user",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
           "style": {
-            "font-size": "9pt"
+            "font-size": "10pt"
           },
-          "normTimes": true,
-          "title": "alerts"
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": false,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "user"
         }
       ],
       "notice": false
@@ -104,7 +109,7 @@
   "failover": false,
   "index": {
     "interval": "day",
-    "pattern": "[sensu-handler-]YYYY.MM.DD",
+    "pattern": "[ssh-invalid-]YYYY.MM.DD",
     "default": "_all",
     "warm_fields": false
   },
