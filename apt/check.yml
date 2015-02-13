@@ -1,0 +1,8 @@
+---
+- hosts: reboot
+  gather_facts: no
+  tasks:
+    - name: check reboot required
+      shell: cat /run/motd.dynamic | grep 'System restart required'
+      register: reboot_check
+      ignore_errors: yes
