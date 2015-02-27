@@ -19,7 +19,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.memory_percent.usedWOBuffersCaches\""
+          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.memory.usage\""
         },
         "2": {
           "id": 2,
@@ -28,7 +28,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.disk_usage.root.used_percentage\""
+          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.disk.usage\""
         },
         "3": {
           "id": 3,
@@ -37,7 +37,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.net.all.traffic\""
+          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.traffic.bytes\""
         }
       },
       "ids": [

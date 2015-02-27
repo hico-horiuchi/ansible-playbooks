@@ -11,7 +11,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"{{ hostvars[host]['ansible_ssh_host'] }}.snmp.all.traffic\""
+          "query": "key:\"{{ hostvars[host]['ansible_ssh_host'] }}.snmp.traffic\""
         }{% if not loop.last %},{% endif %}
 {% endfor %}
       },
