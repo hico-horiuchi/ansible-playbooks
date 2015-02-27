@@ -11,7 +11,5 @@
         group=sensu
         mode=0644
 
-    # - include: tasks/dependences.yml
-    # - include: tasks/community-plugins.yml
     - include: tasks/plugins.yml
-    # - include: tasks/restart.yml
+    - include: tasks/restart.yml

@@ -7,8 +7,12 @@
     group=sensu
     mode=0755
   with_items:
-    - cpu-usage-metrics.sh
-    - disk-usage-metrics.rb
-    - memory-metrics-percent.rb
-    - net-traffic-metrics.rb
-    - snmp-traffic-metrics.rb
+    - check-cpu
+    - check-memory
+    - check-disk
+    - check-http
+    - metrics-cpu
+    - metrics-memory
+    - metrics-disk
+    - metrics-traffic
+    - metrics-snmp
