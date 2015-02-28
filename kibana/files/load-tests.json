@@ -19,7 +19,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test.memory_percent.usedWOBuffersCaches\""
+          "query": "key:\"load-test.memory.usage\""
         },
         "2": {
           "id": 2,
@@ -28,7 +28,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test.net.all.traffic\""
+          "query": "key:\"load-test.traffic.bytes\""
         },
         "3": {
           "id": 3,
@@ -46,7 +46,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test2.memory_percent.usedWOBuffersCaches\""
+          "query": "key:\"load-test2.memory.usage\""
         },
         "5": {
           "id": 5,
@@ -55,7 +55,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test2.net.all.traffic\""
+          "query": "key:\"load-test2.traffic.bytes\""
         },
         "6": {
           "id": 6,
@@ -73,7 +73,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test3.memory_percent.usedWOBuffersCaches\""
+          "query": "key:\"load-test3.memory.usage\""
         },
         "8": {
           "id": 8,
@@ -82,7 +82,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test3.net.all.traffic\""
+          "query": "key:\"load-test3.traffic.bytes\""
         },
         "9": {
           "id": 9,
@@ -100,7 +100,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test4.memory_percent.usedWOBuffersCaches\""
+          "query": "key:\"load-test4.memory.usage\""
         },
         "11": {
           "id": 11,
@@ -109,7 +109,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"load-test4.net.all.traffic\""
+          "query": "key:\"load-test4.traffic.bytes\""
         }
       },
       "ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
