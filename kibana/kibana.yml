@@ -12,7 +12,6 @@
         mode=0644
       with_items:
         - load-tests
-        - ssh-invalid
 
     - name: create each server.json
       template:
@@ -32,10 +31,10 @@
         mode=0644
       with_items: groups['rails']
 
-    - name: create sensu.json
+    - name: create dashboards.json
       template:
-        src=templates/sensu.json.j2
-        dest=/opt/kibana/app/dashboards/sensu.json
+        src=templates/dashboards.json.j2
+        dest=/opt/kibana/app/dashboards/dashboards.json
         owner=root
         group=root
         mode=0644
