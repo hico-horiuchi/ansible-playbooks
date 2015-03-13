@@ -14,7 +14,18 @@
       "panels": [
         {
           "error": false,
-          "span": 4,
+          "span": 3,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "mode": "markdown",
+          "content": "![kibana](img/kibana.png)\n\n###### Ruby on Rails\n\n{% for host in groups['rails'] %}- [{{ host }}](index.html#/dashboard/file/rails_{{ host }}.json)\n{% endfor %}\n\n###### Others\n\n- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [switches](index.html#/dashboard/file/switches.json)\n",
+          "style": {},
+          "title": "dashboards"
+        },
+        {
+          "error": false,
+          "span": 3,
           "editable": false,
           "type": "text",
           "loadingEditor": false,
@@ -22,28 +33,6 @@
           "content": "{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}\n",
           "style": {},
           "title": "sensu metrics"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": false,
-          "type": "text",
-          "loadingEditor": false,
-          "mode": "markdown",
-          "content": "{% for host in groups['rails'] %}- [{{ host }}](index.html#/dashboard/file/rails_{{ host }}.json)\n{% endfor %}\n",
-          "style": {},
-          "title": "ruby on rails"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": false,
-          "type": "text",
-          "loadingEditor": false,
-          "mode": "markdown",
-          "content": "- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [switches](index.html#/dashboard/file/switches.json)\n",
-          "style": {},
-          "title": "others"
         }
       ],
       "notice": false
