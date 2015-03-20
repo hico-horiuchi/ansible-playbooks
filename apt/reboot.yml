@@ -5,7 +5,7 @@
     colon: ':'
   tasks:
     - name: check reboot required
-      shell: cat /run/motd.dynamic | grep 'System restart required'
+      shell: cat /run/motd /run/motd.dynamic | grep 'System restart required'
       register: reboot_check
       ignore_errors: yes
 
