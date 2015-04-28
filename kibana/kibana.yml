@@ -2,25 +2,20 @@
 - hosts: kibana
   sudo: yes
   gather_facts: no
+  vars:
+    colors:
+      - "#bc3539"
+      - "#d9a831"
+      - "#59cb8a"
+      - "#449ad6"
   tasks:
-    - name: copy static files
-      copy:
-        src=files/{{ item }}.json
-        dest=/opt/kibana/app/dashboards/{{ item }}.json
-        owner=root
-        group=root
-        mode=0644
-      with_items:
-        - load-tests
-
-    - name: create each server.json
+    - name: create dashboards.json
       template:
-        src=templates/server.json.j2
-        dest=/opt/kibana/app/dashboards/{{ item }}.json
+        src=templates/dashboards.json.j2
+        dest=/opt/kibana/app/dashboards/dashboards.json
         owner=root
         group=root
         mode=0644
-      with_items: groups['sensu-client']
 
     - name: create each rails.json
       template:
@@ -31,10 +26,10 @@
         mode=0644
       with_items: groups['rails']
 
-    - name: create dashboards.json
+    - name: create load-tests.json
       template:
-        src=templates/dashboards.json.j2
-        dest=/opt/kibana/app/dashboards/dashboards.json
+        src=templates/load-tests.json.j2
+        dest=/opt/kibana/app/dashboards/load-tests.json
         owner=root
         group=root
         mode=0644
@@ -46,3 +41,12 @@
         owner=root
         group=root
         mode=0644
+
+    - name: create each server.json
+      template:
+        src=templates/server.json.j2
+        dest=/opt/kibana/app/dashboards/{{ item }}.json
+        owner=root
+        group=root
+        mode=0644
+      with_items: groups['sensu-client']

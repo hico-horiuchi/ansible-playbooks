@@ -37,14 +37,24 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.traffic.bytes\""
+          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.traffic.rx_bytes\""
+        },
+        "4": {
+          "id": 4,
+          "color": "#d9a831",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "key:\"{% if '_' in item %}{{ item.split('_')[1] }}{% else %}{{ item }}{% endif %}.traffic.tx_bytes\""
         }
       },
       "ids": [
         0,
         1,
         2,
-        3
+        3,
+        4
       ]
     },
     "filter": {
@@ -177,7 +187,8 @@
           "queries": {
             "mode": "selected",
             "ids": [
-              3
+              3,
+              4
             ]
           },
           "annotate": {

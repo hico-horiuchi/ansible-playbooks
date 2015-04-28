@@ -11,13 +11,25 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "key:\"{{ hostvars[host]['ansible_ssh_host'] }}.snmp.traffic\""
+          "query": "key:\"{{ hostvars[host]['ansible_ssh_host'] }}.snmp.rx_bytes\""
+        },
+{% endfor %}
+{% for host in groups['switch'] %}
+        "{{ groups['switch']|length + loop.index0 }}": {
+          "id": {{ groups['switch']|length + loop.index0 }},
+          "color": "#d9a831",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "key:\"{{ hostvars[host]['ansible_ssh_host'] }}.snmp.tx_bytes\""
         }{% if not loop.last %},{% endif %}
 {% endfor %}
       },
       "ids": [
 {% for host in groups['switch'] %}
-        {{ loop.index0 }}{% if not loop.last %},{% endif %}
+        {{ loop.index0 }},
+        {{ groups['switch']|length + loop.index0 }}{% if not loop.last %},{% endif %}
 {% endfor %}
       ]
     },
@@ -67,7 +79,8 @@
           "queries": {
             "mode": "selected",
             "ids": [
-              {{ loop.index0 }}
+              {{ loop.index0 }},
+              {{ groups['switch']|length + loop.index0 }}
             ]
           },
           "annotate": {
