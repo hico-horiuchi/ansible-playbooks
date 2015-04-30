@@ -62,7 +62,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-8h",
+          "from": "now-24h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -70,7 +70,9 @@
           "id": 0
         }
       },
-      "ids": [0]
+      "ids": [
+        0
+      ]
     }
   },
   "rows": [
@@ -368,8 +370,12 @@
       "notice": false,
       "enable": true,
       "status": "Stable",
-      "time_options": ["8h"],
-      "refresh_intervals": ["1m"],
+      "time_options": [
+        "24h"
+      ],
+      "refresh_intervals": [
+        "1m"
+      ],
       "timefield": "@timestamp",
       "now": true,
       "filter_id": 0
