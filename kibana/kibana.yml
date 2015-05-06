@@ -8,6 +8,7 @@
       - "#d9a831"
       - "#59cb8a"
       - "#449ad6"
+      - "#7f7f7f"
   tasks:
     - name: create dashboards.json
       template:
