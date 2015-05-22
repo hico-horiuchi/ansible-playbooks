@@ -1,14 +1,14 @@
 VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure VAGRANTFILE_API_VERSION do |config|
-{% for item in range(1, instance_num + 1)  %}
-  config.vm.define 'bench-{{item}}' do |bench|
-    bench.vm.hostname = 'bench-{{item}}'
-    bench.vm.box = 'trusty64'
-    bench.vm.network :public_network, dev: 'br0', mode: 'bridge', ip: '192.168.11.3{{item}}'
+  {{instance_num}}.times do |i|
+    config.vm.define "bench-#{i}" do |bench|
+      bench.vm.hostname = "bench-#{i}"
+      bench.vm.box = 'trusty64'
+      bench.vm.network :public_network, dev: 'br0', mode: 'bridge', ip: "192.168.11.3#{i}"
+    end
   end
 
-{% endfor %}
   config.vm.provider 'libvirt' do |domain|
     domain.cpus = 1
     domain.memory = 1024

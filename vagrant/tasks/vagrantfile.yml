@@ -10,7 +10,7 @@
     dest={{ansible_env.HOME}}/vagrant/Vagrantfile
     mode=664
 
-# - name: vagrant up
-#   command:
-#     vagrant up
-#     chdir={{ansible_env.HOME}}/vagrant
+- name: vagrant up
+  command:
+    vagrant up
+    chdir={{ansible_env.HOME}}/vagrant
