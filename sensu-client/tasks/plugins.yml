@@ -11,6 +11,9 @@
     - check-memory
     - check-disk
     - check-http
+    - check-elasticsearch
+    - check-redis
+    - check-rabbitmq
     - metrics-cpu
     - metrics-memory
     - metrics-disk
