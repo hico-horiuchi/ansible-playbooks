@@ -1,9 +1,9 @@
 {
-  "title": "load-tests",
+  "title": "web-servers",
   "services": {
     "query": {
       "list": {
-{% for host in groups['load-test'] %}
+{% for host in groups['web-server'] %}
         "{{ loop.index0 }}": {
           "id": {{ loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
@@ -14,9 +14,9 @@
           "query": "key:\"{{ host }}.cpu.usage\""
         },
 {% endfor %}
-{% for host in groups['load-test'] %}
-        "{{ groups['load-test']|length + loop.index0 }}": {
-          "id": {{ groups['load-test']|length + loop.index0 }},
+{% for host in groups['web-server'] %}
+        "{{ groups['web-server']|length + loop.index0 }}": {
+          "id": {{ groups['web-server']|length + loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
           "alias": "",
           "pin": false,
@@ -25,9 +25,9 @@
           "query": "key:\"{{ host }}.memory.usage\""
         },
 {% endfor %}
-{% for host in groups['load-test'] %}
-        "{{ groups['load-test']|length * 2 + loop.index0 }}": {
-          "id": {{ groups['load-test']|length * 2 + loop.index0 }},
+{% for host in groups['web-server'] %}
+        "{{ groups['web-server']|length * 2 + loop.index0 }}": {
+          "id": {{ groups['web-server']|length * 2 + loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
           "alias": "",
           "pin": false,
@@ -36,9 +36,9 @@
           "query": "key:\"{{ host }}.traffic.rx_bytes\""
         },
 {% endfor %}
-{% for host in groups['load-test'] %}
-        "{{ groups['load-test']|length * 3 + loop.index0 }}": {
-          "id": {{ groups['load-test']|length * 3 + loop.index0 }},
+{% for host in groups['web-server'] %}
+        "{{ groups['web-server']|length * 3 + loop.index0 }}": {
+          "id": {{ groups['web-server']|length * 3 + loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
           "alias": "",
           "pin": false,
@@ -49,11 +49,11 @@
 {% endfor %}
       },
       "ids": [
-{% for host in groups['load-test'] %}
+{% for host in groups['web-server'] %}
         {{ loop.index0 }},
-        {{ groups['load-test']|length + loop.index0 }},
-        {{ groups['load-test']|length * 2 + loop.index0 }},
-        {{ groups['load-test']|length * 3 + loop.index0 }}{% if not loop.last %},{% endif %}
+        {{ groups['web-server']|length + loop.index0 }},
+        {{ groups['web-server']|length * 2 + loop.index0 }},
+        {{ groups['web-server']|length * 3 + loop.index0 }}{% if not loop.last %},{% endif %}
 {% endfor %}
       ]
     },
@@ -102,7 +102,7 @@
           "queries": {
             "mode": "selected",
             "ids": [
-{% for host in groups['load-test'] %}
+{% for host in groups['web-server'] %}
               {{ loop.index0 }}{% if not loop.last %},{% endif %}
 {% endfor %}
             ]
@@ -164,8 +164,8 @@
           "queries": {
             "mode": "selected",
             "ids": [
-{% for host in groups['load-test'] %}
-              {{ groups['load-test']|length + loop.index0 }}{% if not loop.last %},{% endif %}
+{% for host in groups['web-server'] %}
+              {{ groups['web-server']|length + loop.index0 }}{% if not loop.last %},{% endif %}
 {% endfor %}
             ]
           },
@@ -226,8 +226,8 @@
           "queries": {
             "mode": "selected",
             "ids": [
-{% for host in groups['load-test'] %}
-              {{ groups['load-test']|length * 2 + loop.index0 }}{% if not loop.last %},{% endif %}
+{% for host in groups['web-server'] %}
+              {{ groups['web-server']|length * 2 + loop.index0 }}{% if not loop.last %},{% endif %}
 {% endfor %}
             ]
           },
@@ -288,8 +288,8 @@
           "queries": {
             "mode": "selected",
             "ids": [
-{% for host in groups['load-test'] %}
-              {{ groups['load-test']|length * 3 + loop.index0 }}{% if not loop.last %},{% endif %}
+{% for host in groups['web-server'] %}
+              {{ groups['web-server']|length * 3 + loop.index0 }}{% if not loop.last %},{% endif %}
 {% endfor %}
             ]
           },

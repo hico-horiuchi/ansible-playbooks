@@ -27,21 +27,17 @@
         mode=0644
       with_items: groups['rails']
 
-    - name: create load-tests.json
+    - name: create statics
       template:
-        src=templates/load-tests.json.j2
-        dest=/opt/kibana/app/dashboards/load-tests.json
+        src=templates/{{ item }}.json.j2
+        dest=/opt/kibana/app/dashboards/{{ item }}.json
         owner=root
         group=root
         mode=0644
-
-    - name: create switches.json
-      template:
-        src=templates/switches.json.j2
-        dest=/opt/kibana/app/dashboards/switches.json
-        owner=root
-        group=root
-        mode=0644
+      with_items:
+        - load-tests
+        - web-servers
+        - switches
 
     - name: create each server.json
       template:
