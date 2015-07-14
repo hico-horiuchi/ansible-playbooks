@@ -5,7 +5,7 @@
       "list": {
         "0": {
           "id": 0,
-          "color": "#59cb8a",
+          "color": "#449ad6",
           "alias": "",
           "pin": false,
           "type": "lucene",
@@ -14,7 +14,7 @@
         },
         "1": {
           "id": 1,
-          "color": "#449ad6",
+          "color": "#59cb8a",
           "alias": "",
           "pin": false,
           "type": "lucene",
@@ -62,7 +62,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-12h",
+          "from": "now-24h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -176,13 +176,13 @@
           "loadingEditor": false,
           "mode": "mean",
           "time_field": "@timestamp",
-          "value_field": "benchmark",
+          "value_field": "request_time",
           "x-axis": true,
           "y-axis": true,
           "scale": 1,
           "y_format": "none",
           "grid": {
-            "max": 100,
+            "max": 0.1,
             "min": 0
           },
           "queries": {
@@ -240,7 +240,7 @@
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "response time",
+          "title": "request time",
           "scaleSeconds": false
         }
       ],
@@ -283,10 +283,10 @@
       "enable": true,
       "status": "Stable",
       "time_options": [
-        "12h"
+        "24h"
       ],
       "refresh_intervals": [
-        "3m"
+        "1m"
       ],
       "timefield": "@timestamp",
       "now": true,
@@ -307,5 +307,5 @@
     "load_local": false,
     "hide": false
   },
-  "refresh": "3m"
+  "refresh": "1m"
 }
