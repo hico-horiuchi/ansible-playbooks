@@ -1,5 +1,5 @@
 {
-  "title": "{{ item }} (ruby on rails)",
+  "title": "{{ item }}",
   "services": {
     "query": {
       "list": {
@@ -10,7 +10,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "@log_name:\"{{ item }}.rails.access\" AND status:(>=200 AND <300)"
+          "query": "@log_name:\"{{ item }}.nginx.access\" AND status:(>=200 AND <300)"
         },
         "1": {
           "id": 1,
@@ -19,7 +19,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "@log_name:\"{{ item }}.rails.access\" AND status:(>=300 AND <400)"
+          "query": "@log_name:\"{{ item }}.nginx.access\" AND status:(>=300 AND <400)"
         },
         "2": {
           "id": 2,
@@ -28,7 +28,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "@log_name:\"{{ item }}.rails.access\" AND status:(>=400 AND <500)"
+          "query": "@log_name:\"{{ item }}.nginx.access\" AND status:(>=400 AND <500)"
         },
         "3": {
           "id": 3,
@@ -37,7 +37,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "@log_name:\"{{ item }}.rails.access\" AND status:(>=500 AND <600)"
+          "query": "@log_name:\"{{ item }}.nginx.access\" AND status:(>=500 AND <600)"
         },
         "4": {
           "id": 4,
@@ -46,7 +46,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "@log_name:\"{{ item }}.rails.access\""
+          "query": "@log_name:\"{{ item }}.nginx.access\""
         }
       },
       "ids": [
@@ -251,7 +251,7 @@
   "failover": false,
   "index": {
     "interval": "day",
-    "pattern": "[ruby-on-rails-]YYYY.MM.DD",
+    "pattern": "[nginx-]YYYY.MM.DD",
     "default": "_all",
     "warm_fields": false
   },

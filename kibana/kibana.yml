@@ -18,14 +18,14 @@
         group=root
         mode=0644
 
-    - name: create each rails.json
+    - name: create each nginx.json
       template:
-        src=templates/rails.json.j2
-        dest=/opt/kibana/app/dashboards/rails_{{ item }}.json
+        src=templates/nginx.json.j2
+        dest=/opt/kibana/app/dashboards/nginx_{{ item }}.json
         owner=root
         group=root
         mode=0644
-      with_items: groups['rails']
+      with_items: groups['nginx']
 
     - name: create statics
       template:
