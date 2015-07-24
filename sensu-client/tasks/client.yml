@@ -3,6 +3,7 @@
   apt_key:
     url=https://repos.sensuapp.org/apt/pubkey.gpg
     state=present
+    validate_certs=no
 
 - name: add the repository
   copy:
