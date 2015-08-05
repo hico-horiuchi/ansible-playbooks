@@ -4,7 +4,5 @@
     dest: '{{ansible_env.HOME}}/ansible-playbooks'
     repo: 'git://github.com/hico-horiuchi/ansible-playbooks.git'
   tasks:
-    - include: tasks/plugin.yml
     - include: tasks/playbook.yml
-    - include: tasks/box.yml
     - include: tasks/vagrantfile.yml

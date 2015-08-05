@@ -1,21 +1,20 @@
 VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure VAGRANTFILE_API_VERSION do |config|
-  {{instance_num}}.times do |i|
+  1.upto({{instance_num}}) do |i|
     config.vm.define "bench-#{i}" do |bench|
       bench.vm.hostname = "bench-#{i}"
-      bench.vm.box = 'trusty64'
-      bench.vm.network :public_network, dev: 'br0', mode: 'bridge', ip: "192.168.11.3#{i}"
+      bench.vm.box = 'ubuntu/trusty64'
+      bench.vm.network :public_network, bridge: 'eth1', ip: "192.168.11.3#{i}"
     end
   end
 
-  config.vm.provider 'libvirt' do |domain|
+  config.vm.provider :virtualbox do |domain|
     domain.cpus = 1
     domain.memory = 1024
-    domain.volume_cache = 'writeback'
   end
 
-  config.vm.provision 'ansible' do |ansible|
+  config.vm.provision :ansible do |ansible|
     ansible.playbook = '{{ansible_env.HOME}}/ansible-playbooks/provision/provision.yml'
   end
 end
