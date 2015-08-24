@@ -1,0 +1,203 @@
+{
+  "title": "switches",
+  "services": {
+    "query": {
+      "list": {
+{% for i in range(hostvars[item]['port']|int) %}
+        "{{ loop.index0 }}": {
+          "id": {{ loop.index0 }},
+          "color": "#449ad6",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "key:\"{{ hostvars[item]['ansible_ssh_host'] }}.snmp.rx_bytes.{{ loop.index }}\""
+        },
+{% endfor %}
+{% for i in range(hostvars[item]['port']|int) %}
+        "{{ hostvars[item]['port']|int + loop.index0 }}": {
+          "id": {{ hostvars[item]['port']|int + loop.index0 }},
+          "color": "#d9a831",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "key:\"{{ hostvars[item]['ansible_ssh_host'] }}.snmp.tx_bytes.{{ loop.index }}\""
+        }{% if not loop.last %},{% endif %}
+{% endfor %}
+      },
+      "ids": [
+{% for i in range(hostvars[item]['port']|int) %}
+        {{ loop.index0 }},
+        {{ hostvars[item]['port']|int + loop.index0 }}{% if not loop.last %},{% endif %}
+{% endfor %}
+      ]
+    },
+    "filter": {
+      "list": {
+        "0": {
+          "type": "time",
+          "field": "@timestamp",
+          "from": "now-6h",
+          "to": "now",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 0
+        }
+      },
+      "ids": [
+        0
+      ]
+    }
+  },
+  "rows": [
+    {
+      "title": "sensu",
+      "height": "200px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+{% for i in range(hostvars[item]['port']|int) %}
+        {
+          "span": 3,
+          "editable": false,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "mean",
+          "time_field": "@timestamp",
+          "value_field": "value",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "bytes",
+          "grid": {
+            "max": 1048576,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              {{ loop.index0 }},
+              {{ hostvars[item]['port']|int + loop.index0 }}
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1m",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 1,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": false,
+          "zoomlinks": false,
+          "options": false,
+          "legend": false,
+          "show_query": false,
+          "interactive": false,
+          "legend_counts": false,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "port {{ loop.index }}"
+        }{% if not loop.last %},{% endif %}
+{% endfor %}
+      ],
+      "notice": false
+    }
+  ],
+  "editable": false,
+  "failover": false,
+  "index": {
+    "interval": "day",
+    "pattern": "[sensu-metrics-]YYYY.MM.DD",
+    "default": "_all",
+    "warm_fields": false
+  },
+  "style": "light",
+  "panel_hints": false,
+  "pulldowns": [
+    {
+      "type": "query",
+      "collapse": true,
+      "notice": false,
+      "enable": true,
+      "query": "*",
+      "pinned": true,
+      "history": [],
+      "remember": 10
+    },
+    {
+      "type": "filtering",
+      "collapse": true,
+      "notice": false,
+      "enable": true
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "notice": false,
+      "enable": true,
+      "status": "Stable",
+      "time_options": [
+        "6h"
+      ],
+      "refresh_intervals": [
+        "30s"
+      ],
+      "timefield": "@timestamp",
+      "now": true,
+      "filter_id": 0
+    }
+  ],
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": false,
+    "save_local": false,
+    "save_default": false,
+    "save_temp": false,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": false,
+    "load_elasticsearch": false,
+    "load_elasticsearch_size": 20,
+    "load_local": false,
+    "hide": false
+  },
+  "refresh": "30s"
+}
