@@ -19,7 +19,7 @@
           "type": "text",
           "loadingEditor": false,
           "mode": "markdown",
-          "content": "![kibana](img/kibana.png)\n\n###### Nginx\n\n{% for host in groups['nginx'] %}- [{{ host }}](index.html#/dashboard/file/nginx_{{ host }}.json)\n{% endfor %}\n\n###### Others\n\n- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [web-servers](index.html#/dashboard/file/web-servers.json)\n- [switches](index.html#/dashboard/file/switches.json)\n",
+          "content": "![kibana](img/kibana.png)\n\n#### Nginx\n\n{% for host in groups['nginx'] %}- [{{ host }}](index.html#/dashboard/file/nginx_{{ host }}.json)\n{% endfor %}\n\n#### Switch\n\n{% for host in groups['switch'] %}- [{{ host }}](index.html#/dashboard/file/switch_{{ host }}.json)\n{% endfor %}\n\n#### Experiment\n\n- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [web-servers](index.html#/dashboard/file/web-servers.json)\n",
           "style": {},
           "title": "dashboards"
         },
@@ -32,7 +32,7 @@
           "mode": "markdown",
           "content": "{% for host in groups['sensu-client'] %}- [{{ host }}](index.html#/dashboard/file/{{ host }}.json) ({{ hostvars[host]['ansible_ssh_host'] }})\n{% endfor %}\n",
           "style": {},
-          "title": "sensu metrics"
+          "title": "sensu"
         }
       ],
       "notice": false

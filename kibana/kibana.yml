@@ -10,15 +10,15 @@
       - "#449ad6"
       - "#7f7f7f"
   tasks:
-    - name: create dashboards.json
+    - name: create dashboards
       template:
-        src=templates/dashboards.json.j2
-        dest=/opt/kibana/app/dashboards/dashboards.json
+        src=templates/dashboard.json.j2
+        dest=/opt/kibana/app/dashboards/dashboard.json
         owner=root
         group=root
         mode=0644
 
-    - name: create each nginx.json
+    - name: create nginx
       template:
         src=templates/nginx.json.j2
         dest=/opt/kibana/app/dashboards/nginx_{{ item }}.json
@@ -27,7 +27,16 @@
         mode=0644
       with_items: groups['nginx']
 
-    - name: create statics
+    - name: create switch
+      template:
+        src=templates/switch.json.j2
+        dest=/opt/kibana/app/dashboards/switch_{{ item }}.json
+        owner=root
+        group=root
+        mode=0644
+      with_items: groups['switch']
+
+    - name: create experiment
       template:
         src=templates/{{ item }}.json.j2
         dest=/opt/kibana/app/dashboards/{{ item }}.json
@@ -37,11 +46,10 @@
       with_items:
         - load-tests
         - web-servers
-        - switches
 
-    - name: create each server.json
+    - name: create each sensu.json
       template:
-        src=templates/server.json.j2
+        src=templates/sensu.json.j2
         dest=/opt/kibana/app/dashboards/{{ item }}.json
         owner=root
         group=root
