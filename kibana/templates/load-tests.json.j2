@@ -7,7 +7,7 @@
         "{{ loop.index0 }}": {
           "id": {{ loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
-          "alias": "",
+          "alias": "{{ host }}",
           "pin": false,
           "type": "lucene",
           "enable": true,
@@ -18,7 +18,7 @@
         "{{ groups['load-test']|length + loop.index0 }}": {
           "id": {{ groups['load-test']|length + loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
-          "alias": "",
+          "alias": "{{ host }}",
           "pin": false,
           "type": "lucene",
           "enable": true,
@@ -29,7 +29,7 @@
         "{{ groups['load-test']|length * 2 + loop.index0 }}": {
           "id": {{ groups['load-test']|length * 2 + loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
-          "alias": "",
+          "alias": "{{ host }}",
           "pin": false,
           "type": "lucene",
           "enable": true,
@@ -40,7 +40,7 @@
         "{{ groups['load-test']|length * 3 + loop.index0 }}": {
           "id": {{ groups['load-test']|length * 3 + loop.index0 }},
           "color": "{{ colors[loop.index0 % colors|length] }}",
-          "alias": "",
+          "alias": "{{ host }}",
           "pin": false,
           "type": "lucene",
           "enable": true,

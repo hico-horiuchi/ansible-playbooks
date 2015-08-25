@@ -7,7 +7,7 @@
         "{{ loop.index0 }}": {
           "id": {{ loop.index0 }},
           "color": "#449ad6",
-          "alias": "",
+          "alias": "rx",
           "pin": false,
           "type": "lucene",
           "enable": true,
@@ -18,7 +18,7 @@
         "{{ hostvars[item]['port']|int + loop.index0 }}": {
           "id": {{ hostvars[item]['port']|int + loop.index0 }},
           "color": "#d9a831",
-          "alias": "",
+          "alias": "tx",
           "pin": false,
           "type": "lucene",
           "enable": true,
@@ -120,8 +120,8 @@
           "spyable": false,
           "zoomlinks": false,
           "options": false,
-          "legend": false,
-          "show_query": false,
+          "legend": true,
+          "show_query": true,
           "interactive": false,
           "legend_counts": false,
           "timezone": "browser",
