@@ -2,17 +2,16 @@
 - hosts: all
   sudo: yes
   gather_facts: no
-  vars:
-    colon: ':'
   tasks:
-    - name: notify to typetalk
-      typetalk:
-        client_id={{ typetalk_client_id }}
-        client_secret={{ typetalk_client_secret }}
-        topic={{ typetalk_topic }}
-        msg='{{ colon }}laughing{{ colon }} サーバーアップデートを開始します!'
+    - name: notify to slack
+      slack:
+        channel={{ slack_channel }}
+        icon_url='http://www.ansible.com/hs-fs/hub/330046/file-764918166-png/Official_Logos/ansible_circleA_black_small.png'
+        msg='サーバーアップデートを開始します。'
+        token={{ slack_token }}
+        username='Ansible'
       run_once: true
-      when: typetalk_notify
+      when: slack_notify
 
     - name: apt-get update & upgrade
       apt:
@@ -24,3 +23,13 @@
 
     - name: apt-get clean
       command: apt-get -y clean
+
+    - name: notify to slack
+      slack:
+        channel={{ slack_channel }}
+        icon_url='http://www.ansible.com/hs-fs/hub/330046/file-764918166-png/Official_Logos/ansible_circleA_black_small.png'
+        msg='サーバーアップデートが完了しました。'
+        token={{ slack_token }}
+        username='Ansible'
+      run_once: true
+      when: slack_notify

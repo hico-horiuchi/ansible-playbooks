@@ -1,13 +1,21 @@
 ---
 - hosts: reboot
   gather_facts: no
-  vars:
-    colon: ':'
   tasks:
     - name: check reboot required
       shell: cat /run/motd /run/motd.dynamic | grep 'System restart required'
       register: reboot_check
       ignore_errors: yes
+
+    - name: notify to slack
+      slack:
+        channel={{ slack_channel }}
+        icon_url='http://www.ansible.com/hs-fs/hub/330046/file-764918166-png/Official_Logos/ansible_circleA_black_small.png'
+        msg='更新を適用するため、サーバーを再起動します。'
+        token={{ slack_token }}
+        username='Ansible'
+      run_once: true
+      when: reboot_check|success and slack_notify
 
     - name: reboot
       command: /sbin/shutdown -r now
@@ -22,11 +30,12 @@
       local_action: wait_for host={{ ansible_ssh_host }} port=22 delay=30
       when: reboot_check|success
 
-    - name: notify to typetalk
-      typetalk:
-        client_id={{ typetalk_client_id }}
-        client_secret={{ typetalk_client_secret }}
-        topic={{ typetalk_topic }}
-        msg='{{ colon }}wink{{ colon }} アップデートが完了しました! 再起動中です'
+    - name: notify to slack
+      slack:
+        channel={{ slack_channel }}
+        icon_url='http://www.ansible.com/hs-fs/hub/330046/file-764918166-png/Official_Logos/ansible_circleA_black_small.png'
+        msg='サーバーの再起動が完了しました。'
+        token={{ slack_token }}
+        username='Ansible'
       run_once: true
-      when: typetalk_notify
+      when: reboot_check|success and slack_notify

@@ -1,8 +1,7 @@
 [all:vars]
-typetalk_notify=true
-typetalk_client_id=abcdefghijklmnopqrstuvwxyz123456
-typetalk_client_secret=abcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz123
-typetalk_topic=1234
+slack_notify=true
+slack_token=012345678/9ABCDEFGH/IJKLMNOPQRSTUVWXYZ012345
+slack_channel=#general
 
 [sensu-client]
 localhost ansible_ssh_host=127.0.0.1
