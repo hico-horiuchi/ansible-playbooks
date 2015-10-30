@@ -62,7 +62,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-24h",
+          "from": "now-6h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -84,7 +84,7 @@
       "collapsable": false,
       "panels": [
         {
-          "span": 12,
+          "span": 6,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -146,7 +146,7 @@
           "title": "cpu"
         },
         {
-          "span": 12,
+          "span": 6,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -208,7 +208,7 @@
           "title": "memory"
         },
         {
-          "span": 12,
+          "span": 6,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -270,7 +270,7 @@
           "title": "receive"
         },
         {
-          "span": 12,
+          "span": 6,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -339,7 +339,7 @@
   "failover": false,
   "index": {
     "interval": "day",
-    "pattern": "[sensu-metrics-]YYYY.MM.DD",
+    "pattern": "[sensu-]YYYY.MM.DD",
     "default": "_all",
     "warm_fields": false
   },
@@ -371,10 +371,10 @@
       "enable": true,
       "status": "Stable",
       "time_options": [
-        "24h"
+        "6h"
       ],
       "refresh_intervals": [
-        "1m"
+        "30s"
       ],
       "timefield": "@timestamp",
       "now": true,

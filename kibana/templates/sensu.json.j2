@@ -14,7 +14,7 @@
         },
         "1": {
           "id": 1,
-          "color": "#d9a831",
+          "color": "#59cb8a",
           "alias": "memory",
           "pin": false,
           "type": "lucene",
@@ -23,7 +23,7 @@
         },
         "2": {
           "id": 2,
-          "color": "#59cb8a",
+          "color": "#7f7f7f",
           "alias": "disk",
           "pin": false,
           "type": "lucene",
@@ -62,7 +62,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-24h",
+          "from": "now-6h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -84,7 +84,7 @@
       "collapsable": false,
       "panels": [
         {
-          "span": 12,
+          "span": 4,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -102,8 +102,152 @@
           "queries": {
             "mode": "selected",
             "ids": [
-              0,
-              1,
+              0
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1m",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 1,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": false,
+          "zoomlinks": false,
+          "options": false,
+          "legend": true,
+          "show_query": true,
+          "interactive": false,
+          "legend_counts": false,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "cpu usage"
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "mean",
+          "time_field": "@timestamp",
+          "value_field": "value",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": 100,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              1
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1m",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 1,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": false,
+          "zoomlinks": false,
+          "options": false,
+          "legend": true,
+          "show_query": true,
+          "interactive": false,
+          "legend_counts": false,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "memory usage"
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "mean",
+          "time_field": "@timestamp",
+          "value_field": "value",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": 100,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
               2
             ]
           },
@@ -156,10 +300,10 @@
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "metrics"
+          "title": "disk usage"
         },
         {
-          "span": 12,
+          "span": 6,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -177,7 +321,79 @@
           "queries": {
             "mode": "selected",
             "ids": [
-              3,
+              3
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1m",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 1,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": false,
+          "zoomlinks": false,
+          "options": false,
+          "legend": true,
+          "show_query": true,
+          "interactive": false,
+          "legend_counts": false,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "rx bytes"
+        },
+        {
+          "span": 6,
+          "editable": false,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "mean",
+          "time_field": "@timestamp",
+          "value_field": "value",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "bytes",
+          "grid": {
+            "max": 131072,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
               4
             ]
           },
@@ -230,7 +446,7 @@
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "traffic"
+          "title": "tx bytes"
         }
       ],
       "notice": false
@@ -240,7 +456,7 @@
   "failover": false,
   "index": {
     "interval": "day",
-    "pattern": "[sensu-metrics-]YYYY.MM.DD",
+    "pattern": "[sensu-]YYYY.MM.DD",
     "default": "_all",
     "warm_fields": false
   },
@@ -272,10 +488,10 @@
       "enable": true,
       "status": "Stable",
       "time_options": [
-        "24h"
+        "12h"
       ],
       "refresh_intervals": [
-        "1m"
+        "30s"
       ],
       "timefield": "@timestamp",
       "now": true,

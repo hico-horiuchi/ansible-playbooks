@@ -1,5 +1,5 @@
 {
-  "title": "kibana",
+  "title": "Kibana",
   "services": {
     "query": {},
     "filter": {}
@@ -7,25 +7,47 @@
   "rows": [
     {
       "title": "dashboards",
-      "height": "500px",
+      "height": "200px",
       "editable": false,
       "collapse": false,
       "collapsable": false,
       "panels": [
         {
           "error": false,
-          "span": 3,
+          "span": 4,
           "editable": false,
           "type": "text",
           "loadingEditor": false,
           "mode": "markdown",
-          "content": "![kibana](img/kibana.png)\n\n#### Nginx\n\n{% for host in groups['nginx'] %}- [{{ host }}](index.html#/dashboard/file/nginx_{{ host }}.json)\n{% endfor %}\n\n#### Switch\n\n{% for host in groups['switch'] %}- [{{ host }}](index.html#/dashboard/file/switch_{{ host }}.json)\n{% endfor %}\n\n#### Experiment\n\n- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [web-servers](index.html#/dashboard/file/web-servers.json)\n",
+          "content": "{% for host in groups['nginx'] %}- [{{ host }}](index.html#/dashboard/file/nginx_{{ host }}.json)\n{% endfor %}\n",
           "style": {},
-          "title": "dashboards"
+          "title": "nginx"
         },
         {
           "error": false,
           "span": 4,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "mode": "markdown",
+          "content": "{% for host in groups['switch'] %}- [{{ host }}](index.html#/dashboard/file/switch_{{ host }}.json)\n{% endfor %}\n",
+          "style": {},
+          "title": "switch"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "mode": "markdown",
+          "content": "- [load-tests](index.html#/dashboard/file/load-tests.json)\n- [web-servers](index.html#/dashboard/file/web-servers.json)\n",
+          "style": {},
+          "title": "experiment"
+        },
+        {
+          "error": false,
+          "span": 12,
           "editable": false,
           "type": "text",
           "loadingEditor": false,

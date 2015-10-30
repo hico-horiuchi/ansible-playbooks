@@ -62,7 +62,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-24h",
+          "from": "now-12h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -84,7 +84,7 @@
       "collapsable": false,
       "panels": [
         {
-          "span": 12,
+          "span": 8,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -160,7 +160,43 @@
           "title": "status code"
         },
         {
-          "span": 12,
+          "span": 4,
+          "editable": false,
+          "type": "terms",
+          "loadingEditor": false,
+          "error": false,
+          "field": "status",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "below",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "status code"
+        },
+        {
+          "span": 10,
           "editable": false,
           "type": "histogram",
           "loadingEditor": false,
@@ -232,6 +268,30 @@
           },
           "title": "request time",
           "scaleSeconds": false
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "trends",
+          "loadingEditor": false,
+          "ago": "1m",
+          "arrangement": "vertical",
+          "reverse": false,
+          "spyable": false,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "style": {
+            "font-size": "16pt"
+          },
+          "title": "trends"
         }
       ],
       "notice": false
@@ -273,10 +333,10 @@
       "enable": true,
       "status": "Stable",
       "time_options": [
-        "24h"
+        "12h"
       ],
       "refresh_intervals": [
-        "1m"
+        "30s"
       ],
       "timefield": "@timestamp",
       "now": true,

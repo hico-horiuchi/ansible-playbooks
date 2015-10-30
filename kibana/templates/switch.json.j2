@@ -38,7 +38,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-6h",
+          "from": "now-3h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -143,7 +143,7 @@
   "failover": false,
   "index": {
     "interval": "day",
-    "pattern": "[sensu-metrics-]YYYY.MM.DD",
+    "pattern": "[sensu-]YYYY.MM.DD",
     "default": "_all",
     "warm_fields": false
   },
@@ -175,7 +175,7 @@
       "enable": true,
       "status": "Stable",
       "time_options": [
-        "6h"
+        "3h"
       ],
       "refresh_intervals": [
         "30s"
